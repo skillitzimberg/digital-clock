@@ -1,6 +1,6 @@
 # Steps to complete
 
-1. Display a static date & time in the required format
+1. Display a static date in the required format
 2. Make the date dynamic
     - Give the date element an id
     - Create `main.js'
@@ -11,9 +11,11 @@
     - Use the current date object to get the formatted day of the week, month of the year, date, and year
     - Insert the current date into the DOM via the date id
 
-3. Make the time in seconds dynamic
-4. Make the time in minutes dynamic
-5. Make the time in hours dynamic
+3. Display a static time in the required format
+    - Use an `h2` with `span`'s for the seconds, minutes, and hours
+4. Make the time in seconds dynamic
+5. Make the time in minutes dynamic
+6. Make the time in hours dynamic
 
 ## Things I didn't plan for
 - Getting the ordinal indicator for the day.
