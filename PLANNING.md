@@ -31,7 +31,10 @@
     - Get the current seconds from the curent time
     - Insert the current seconds into the `meridian` element
 8. Styling
-    - I don't have a plan for this . . . ?
+    - Center everything on the page
+    - Choose a font
+    - Choose colors for the font & background
+9. Add toggle for 24 to 12 hour display
 
 ## Things I didn't plan for
 - Getting the ordinal indicator for the day.
