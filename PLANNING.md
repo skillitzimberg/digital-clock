@@ -19,7 +19,17 @@
     - Get the current seconds from the curent time
     - Insert the current seconds into the `seconds` element
 5. Display the time in minutes dynamically
+    - Give the `span` for the seconds an id of `minute`
+    - Get the current seconds from the curent time
+    - Insert the current seconds into the `minute` element
 6. Display the time in hours dynamically
+    - Give the `span` for the seconds an id of `hour`
+    - Get the current seconds from the curent time
+    - Insert the current seconds into the `hour` element
+7. Display the meridian dynamically
+    - Give the `span` for the seconds an id of `meridian`
+    - Get the current seconds from the curent time
+    - Insert the current seconds into the `meridian` element
 
 ## Things I didn't plan for
 - Getting the ordinal indicator for the day.
