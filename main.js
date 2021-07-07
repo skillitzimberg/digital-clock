@@ -38,6 +38,10 @@ function setDate() {
     let seconds = currentTime.getSeconds();
     const secondsElem = document.getElementById("seconds");
     secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
+
+    let minutes = currentTime.getMinutes();
+    const minutesElem = document.getElementById("minutes");
+    minutesElem.innerText = minutes < 10 ? `0${minutes}` : minutes;
 }
 
 function getOrdinalIndicator(t) {
@@ -60,6 +64,10 @@ function tick() {
         seconds = currentTime.getSeconds();
         secondsElem = document.getElementById("seconds");
         secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
+
+        minutes = currentTime.getMinutes();
+        minutesElem = document.getElementById("minutes");
+        minutesElem.innerText = minutes < 10 ? `0${minutes}` : minutes;
     }, 1000);
 }
 
