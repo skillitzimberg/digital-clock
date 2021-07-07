@@ -30,6 +30,8 @@
     - Give the `span` for the seconds an id of `meridian`
     - Get the current seconds from the curent time
     - Insert the current seconds into the `meridian` element
+8. Styling
+    - I don't have a plan for this . . . ?
 
 ## Things I didn't plan for
 - Getting the ordinal indicator for the day.
