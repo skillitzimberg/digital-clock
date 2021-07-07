@@ -25,6 +25,11 @@ const monthsOfTheYear = {
     11: "December",
 }
 
+function runClock() {
+    setDate();
+    tick();
+}
+
 function setDate() {
     const dateElem = document.getElementById("date");
     let day = daysOfTheWeek[currentTime.getUTCDay()];
@@ -46,6 +51,11 @@ function setDate() {
     let hours = currentTime.getHours();
     const hoursElem = document.getElementById("hours");
     hoursElem.innerText = hours < 10 ? `0${hours}` : hours;
+
+    let meridian = getMeridian(hours);
+    const meridianElem = document.getElementById("meridian");
+    meridianElem.innerText = meridian;
+    
 }
 
 function getOrdinalIndicator(t) {
@@ -59,6 +69,10 @@ function getOrdinalIndicator(t) {
         default:
             return "th";
     }
+}
+
+function getMeridian(hours) {
+    return hours < 12 ? "AM" : "PM"
 }
 
 function tick() {
@@ -77,11 +91,6 @@ function tick() {
         hoursElem = document.getElementById("hours");
         hoursElem.innerText = hours < 10 ? `0${hours}` : hours;
     }, 1000);
-}
-
-function runClock() {
-    setDate();
-    tick();
 }
 
 runClock();
