@@ -30,9 +30,10 @@
     - Give the `span` for the seconds an id of `meridian`
     - Get the current seconds from the curent time
     - Insert the current seconds into the `meridian` element
-8. Styling
+8. Style the page
     - Center everything on the page
     - Choose a font
+    - Choose a font size
     - Choose colors for the font & background
 9. Add toggle for 24 to 12 hour display
 
