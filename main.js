@@ -1,3 +1,5 @@
+let currentTime = new Date();
+
 const daysOfTheWeek = {
     0: "Sunday",
     1: "Monday",
@@ -23,6 +25,21 @@ const monthsOfTheYear = {
     11: "December",
 }
 
+function setDate() {
+    const dateElem = document.getElementById("date");
+    let day = daysOfTheWeek[currentTime.getUTCDay()];
+    let month = monthsOfTheYear[currentTime.getMonth()];
+    let dateAsInt = currentTime.getDate();
+    let date = `${dateAsInt}${getOrdinalIndicator(dateAsInt)}`;
+    let year = currentTime.getFullYear();
+    let dateString = `${day}, ${month} ${date} ${year}`;
+    dateElem.innerText = dateString;
+
+    let seconds = currentTime.getSeconds();
+    const secondsElem = document.getElementById("seconds");
+    secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
+}
+
 function getOrdinalIndicator(t) {
     switch(t % 10) {
         case 1:
@@ -36,12 +53,19 @@ function getOrdinalIndicator(t) {
     }
 }
 
-const dateElem = document.getElementById("date");
-let currentTime = new Date();
-let day = daysOfTheWeek[currentTime.getUTCDay()];
-let month = monthsOfTheYear[currentTime.getMonth()];
-let dateAsInt = currentTime.getDate();
-let date = `${dateAsInt}${getOrdinalIndicator(dateAsInt)}`;
-let year = currentTime.getFullYear();
-let dateString = `${day}, ${month} ${date} ${year}`;
-dateElem.innerText = dateString;
+function tick() {
+    setInterval(() => {
+        currentTime = new Date();
+
+        seconds = currentTime.getSeconds();
+        secondsElem = document.getElementById("seconds");
+        secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
+    }, 1000);
+}
+
+function runClock() {
+    setDate();
+    tick();
+}
+
+runClock();
