@@ -1,96 +1,82 @@
-let currentTime = new Date();
-
-const daysOfTheWeek = {
-    0: "Sunday",
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday"
-}
-
-const monthsOfTheYear = {
-    0: "January",
-    1: "February",
-    2: "March",
-    3: "April",
-    4: "May",
-    5: "June",
-    6: "July",
-    7: "August",
-    8: "September",
-    9: "October",
-    10: "November",
-    11: "December",
-}
-
-function runClock() {
-    setDate();
-    tick();
-}
-
-function setDate() {
+function renderDate() {
+    const currentDate = new Date();
     const dateElem = document.getElementById("date");
-    let day = daysOfTheWeek[currentTime.getUTCDay()];
-    let month = monthsOfTheYear[currentTime.getMonth()];
-    let dateAsInt = currentTime.getDate();
-    let date = `${dateAsInt}${getOrdinalIndicator(dateAsInt)}`;
-    let year = currentTime.getFullYear();
-    let dateString = `${day}, ${month} ${date} ${year}`;
-    dateElem.innerText = dateString;
+    const day = daysOfTheWeek[currentDate.getUTCDay()];
+    const month = monthsOfTheYear[currentDate.getMonth()];
+    const date = formatDate(currentDate.getDate());
+    const year = currentDate.getFullYear();
 
-    let seconds = currentTime.getSeconds();
-    const secondsElem = document.getElementById("seconds");
-    secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
-
-    let minutes = currentTime.getMinutes();
-    const minutesElem = document.getElementById("minutes");
-    minutesElem.innerText = minutes < 10 ? `0${minutes}` : minutes;
-
-    let hours = currentTime.getHours();
-    const hoursElem = document.getElementById("hours");
-    hoursElem.innerText = hours < 10 ? `0${hours}` : hours;
-
-    let meridian = getMeridian(hours);
-    const meridianElem = document.getElementById("meridian");
-    meridianElem.innerText = meridian;
-    
+    const dateString = `${day}, ${month} ${date} ${year}`;
+    dateElem.textContent = dateString; 
 }
 
-function getOrdinalIndicator(t) {
-    switch(t % 10) {
-        case 1:
-            return "st";
-        case 2:
-            return "nd";
-        case 3:
-            return "rd";
-        default:
-            return "th";
+function formatDate(date) {
+    if(date < 10 || date > 20) {
+        switch(date % 10) {
+            case 1:
+                return `${date}st`;
+            case 2:
+                return `${date}nd`;
+            case 3:
+                return `${date}rd`;
+        }
     }
+    return `${date}th`
 }
 
-function getMeridian(hours) {
-    return hours < 12 ? "AM" : "PM"
+function renderTime() {
+    const currentTime = new Date();
+    const timeElem = document.getElementById("time");
+    const hour = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const seconds = currentTime.getSeconds();
+
+    let isAm = hour < 12;
+    let amPm = isAm ? "AM" : "PM";
+
+    const timeString = `${addLeadingZero(formatHour(hour))}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${amPm}`;
+    timeElem.textContent = timeString;
 }
 
-function tick() {
-    setInterval(() => {
-        currentTime = new Date();
+function formatHour(hour) {
+    hour = hour > 13 ? hour - 12 : hour;
 
-        seconds = currentTime.getSeconds();
-        secondsElem = document.getElementById("seconds");
-        secondsElem.innerText = seconds < 10 ? `0${seconds}` : seconds;
-
-        minutes = currentTime.getMinutes();
-        minutesElem = document.getElementById("minutes");
-        minutesElem.innerText = minutes < 10 ? `0${minutes}` : minutes;
-
-        hours = currentTime.getHours();
-        hoursElem = document.getElementById("hours");
-        hoursElem.innerText = hours < 10 ? `0${hours}` : hours;
-    }, 1000);
+    hour = hour === 0 ? hour + 12 : hour;
+    return hour
 }
 
-runClock();
+function addLeadingZero(number) {
+    return number < 10 ? `0${number}` : number;
+}
+
+const daysOfTheWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+]
+
+const monthsOfTheYear = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+]
+
+renderTime();
+renderDate();
+setInterval(() => {
+    renderTime();
+    renderDate();
+}, 1000);
