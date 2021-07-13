@@ -39,7 +39,10 @@ function renderTime() {
 }
 
 function formatHour(hour) {
-    return hour > 13 ? hour - 12 : hour;
+    hour = hour > 13 ? hour - 12 : hour;
+
+    hour = hour === 0 ? hour + 12 : hour;
+    return hour
 }
 
 function addLeadingZero(number) {
